@@ -25,43 +25,88 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		//checking if minus
+		if (x2 > 0){
+			return minus(x1, x2);
+		}
+		// Adding one * x2
+		int answer = x1;
+		for (int i = 0; i < x2; i++) {
+			answer++;
+		}
+		return answer;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		//checking if minus
+		if (x2 > 0){
+			return plus(x1, x2);
+		}
+		// Redocing one * x2
+		int answer = x1;
+		for (int i = 0; i < x2; i++) {
+			answer--;
+		}
+		return answer;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
+		int answer = x1;
+		for (int i = 0; i < x2; i++) {
+			answer = plus(answer, answer);
+		}
+		return answer;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		int answer = x;
+		if (n == 0){
+			return 1;
+		}
+		for (int i = 0; i < n; i++) {
+			answer = times(answer, answer);
+		}
+		return answer;
 	}
 
-	// Returns the integer part of x1 / x2 
+	// Returns the integer part of x1 / x2 5/2 2*? = 4
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int answer = x2;
+		for (int i = 0; i < x1; i++) {
+			if (times(x2, i) == x1){
+				return i;
+			}
+			if (times(x2, i) > x1){
+				return minus(i, 1);
+			}
+		}
+		return answer;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		// Replace the following statement with your code 6%4
+		int answer = x1;
+		while (answer >= x2){
+			answer = minus(answer, x2);
+		}
+
+
+		return answer;
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		// Replace the following statement with your code
+		for (int i = 0; i < x; i++){
+			if (times(i, i) == x){
+				return i;
+			}
+		}
 		return 0;
 	}	  	  
 }
