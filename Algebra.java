@@ -7,9 +7,9 @@ public class Algebra {
 	public static void main(String args[]) {
 	    // Tests some of the operations
 	    System.out.println(plus(-2,-3));   // 2 + 3
-	    System.out.println(minus(7,2));  // 7 - 2
+	    System.out.println(minus(-7,-2));  // 7 - 2
    		System.out.println(minus(2,7));  // 2 - 7
- 		System.out.println(times(3,4));  // 3 * 4 3+3+3+3
+ 		System.out.println(times(-3,-4));  // 3 * 4 3+3+3+3
    		System.out.println(plus(2,times(4,2)));  // 2 + 4 * 2 
    		System.out.println(pow(5,3));      // 5^3
    		System.out.println(pow(3,5));      // 3^5
@@ -55,15 +55,23 @@ public class Algebra {
 		return answer;
 	}
 
-	// Returns x1 * x2
-	public static int times(int x1, int x2) {
-		// Replace the following statement with your code 
-		int answer = Math.abs(x1);
+	// Returns x1 * x2 -2 5 -2+-2+-2+-2+-2
+	public static int times(int x1, int x2){
+		// Replace the following statement with your code
+		if (x1 == 0 || x2 == 0) {
+			return 0;
+		}
+		int answer = x1;
+		int count = x2;
+		if (count < 0 && answer >= 0){
+			answer = x2;
+			count = x1;
+		}
+		if (x1 < 0 && x2 < 0){
+			answer = Math.abs(answer);
+		}
 		for (int i = 0; i < Math.abs(minus(x2, 1)); i++) {
 			answer = plus(answer, x1);
-		}
-		if ((x1 < 0 || x2 <0) && !(x1 < 0 && x2 <0)){
-			return -answer;
 		}
 		return answer;
 	}
@@ -73,6 +81,9 @@ public class Algebra {
 		int answer = x;
 		if (n == 0){
 			return 1;
+		}
+		if (mod(n, 2) == 0){
+			answer = Math.abs(answer);
 		}
 		for (int i = 0; i < n - 1; i++) {
 			answer = times(answer, x);
