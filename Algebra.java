@@ -49,8 +49,7 @@ public class Algebra {
 				answer++;
 			} else {
 				answer--;
-			}
-			
+			}	
 		}
 		return answer;
 	}
@@ -61,14 +60,15 @@ public class Algebra {
 		if (x1 == 0 || x2 == 0) {
 			return 0;
 		}
+		if (x1 < 0 && x2 < 0){
+			x1 = Math.abs(x1);
+			x2 = Math.abs(x2);
+		}
 		int answer = x1;
 		int count = x2;
 		if (count < 0 && answer >= 0){
 			answer = x2;
 			count = x1;
-		}
-		if (x1 < 0 && x2 < 0){
-			answer = Math.abs(answer);
 		}
 		for (int i = 0; i < Math.abs(minus(x2, 1)); i++) {
 			answer = plus(answer, x1);
@@ -93,6 +93,13 @@ public class Algebra {
 
 	// Returns the integer part of x1 / x2
 	public static int div(int x1, int x2) {
+		if (x1 == 0){
+			return 0;
+		}
+		if (x1 < 0 && x2 < 0){
+			x1 = Math.abs(x1);
+			x2 = Math.abs(x2);
+		}
 		int answer = x2;
 		for (int i = 1; i < Math.abs(plus(x1 , 1)); i++) {
 			if (times(x2, i) == x1){
@@ -112,17 +119,22 @@ public class Algebra {
 		while (answer >= x2){
 			answer = minus(answer, x2);
 		}
-
-
 		return answer;
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		// Replace the following statement with your code
+		if (x == 1){
+			return 1;
+		}
 		for (int i = 0; i < x; i++){
-			if (times(i, i) >= x){
+			int check = times(i, i);
+			if (check == x){
 				return i;
+			}
+			if (check > x){
+				return minus(i, 1);
 			}
 		}
 		return 0;
