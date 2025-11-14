@@ -13,7 +13,7 @@ public class Algebra {
    		System.out.println(plus(2,times(4,2)));  // 2 + 4 * 2 
    		System.out.println(pow(-5,3));      // 5^3
    		System.out.println(pow(-3,5));      // 3^5
-   		System.out.println(div(12,3));   // 12 / 3    
+   		System.out.println(div(12,-3));   // 12 / 3    
    		System.out.println(div(2,2));    // 5 / 5  
    		System.out.println(div(2,2));   // 25 / 7
    		System.out.println(mod(3,2));   // 25 % 7
@@ -88,7 +88,6 @@ public class Algebra {
 		int answer = x;
 		for (int i = 0; i < n - 1; i++) {
 			answer = times(answer, x);
-			System.out.println(answer);
 		}
 		return answer;
 	}
@@ -110,6 +109,9 @@ public class Algebra {
 			if (times(x2, i) > x1){
 				return minus(i, 1);
 			}
+		}
+		if (x1 < 0 || x2 < 0){
+			times(answer, -1);
 		}
 		return answer;
 	}
