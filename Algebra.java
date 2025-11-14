@@ -9,8 +9,8 @@ public class Algebra {
 	    System.out.println(plus(2,3));   // 2 + 3
 	    System.out.println(minus(7,2));  // 7 - 2
    		System.out.println(minus(2,7));  // 2 - 7
- 		System.out.println(times(3,4));  // 3 * 4
-   		System.out.println(plus(2,times(4,2)));  // 2 + 4 * 2
+ 		System.out.println(times(3,4));  // 3 * 4 3+3+3+3
+   		System.out.println(plus(2,times(4,2)));  // 2 + 4 * 2 
    		System.out.println(pow(5,3));      // 5^3
    		System.out.println(pow(3,5));      // 3^5
    		System.out.println(div(12,3));   // 12 / 3    
@@ -25,14 +25,16 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		//checking if minus
-		if (x2 > 0){
-			return minus(x1, x2);
-		}
 		// Adding one * x2
 		int answer = x1;
-		for (int i = 0; i < x2; i++) {
-			answer++;
+		int count = x2;
+		for (int i = 0; i < count; i++) {
+			if (x2 < 0){
+				answer--;
+			} else {
+				answer++;
+			}
+			
 		}
 		return answer;
 	}
@@ -40,43 +42,45 @@ public class Algebra {
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
 		//checking if minus
-		if (x2 > 0){
-			return plus(x1, x2);
-		}
-		// Redocing one * x2
 		int answer = x1;
-		for (int i = 0; i < x2; i++) {
-			answer--;
+		int count = x2;
+		for (int i = 0; i < count; i++) {
+			if (x2 < 0){
+				answer++;
+			} else {
+				answer--;
+			}
+			
 		}
 		return answer;
 	}
 
-	// Returns x1 * x2
+	// Returns x1 * x2 3+3+3+3
 	public static int times(int x1, int x2) {
 		// Replace the following statement with your code
 		int answer = x1;
-		for (int i = 0; i < x2; i++) {
-			answer = plus(answer, answer);
+		for (int i = 0; i < x2 - 1; i++) {
+			answer = plus(answer, x1);
 		}
 		return answer;
 	}
 
-	// Returns x^n (for n >= 0)
+	// Returns x^n (for n >= 0) 5 * 5 * 5
 	public static int pow(int x, int n) {
 		int answer = x;
 		if (n == 0){
 			return 1;
 		}
-		for (int i = 0; i < n; i++) {
-			answer = times(answer, answer);
+		for (int i = 0; i < n - 1; i++) {
+			answer = times(answer, x);
 		}
 		return answer;
 	}
 
-	// Returns the integer part of x1 / x2 5/2 2*? = 4
+	// Returns the integer part of x1 / x2 5/2 2*? = 4 
 	public static int div(int x1, int x2) {
 		int answer = x2;
-		for (int i = 0; i < x1; i++) {
+		for (int i = 1; i < x1 + 1; i++) {
 			if (times(x2, i) == x1){
 				return i;
 			}
@@ -103,7 +107,7 @@ public class Algebra {
 	public static int sqrt(int x) {
 		// Replace the following statement with your code
 		for (int i = 0; i < x; i++){
-			if (times(i, i) == x){
+			if (times(i, i) >= x){
 				return i;
 			}
 		}
