@@ -5,63 +5,151 @@
 
 public class Algebra {
 	public static void main(String args[]) {
-	    // Tests some of the operations
-	    System.out.println(plus(2,3));   // 2 + 3
-	    System.out.println(minus(7,2));  // 7 - 2
-   		System.out.println(minus(2,7));  // 2 - 7
- 		System.out.println(times(3,4));  // 3 * 4
-   		System.out.println(plus(2,times(4,2)));  // 2 + 4 * 2
-   		System.out.println(pow(5,3));      // 5^3
-   		System.out.println(pow(3,5));      // 3^5
-   		System.out.println(div(12,3));   // 12 / 3    
-   		System.out.println(div(5,5));    // 5 / 5  
-   		System.out.println(div(25,7));   // 25 / 7
-   		System.out.println(mod(25,7));   // 25 % 7
-   		System.out.println(mod(120,6));  // 120 % 6    
-   		System.out.println(sqrt(36));
-		System.out.println(sqrt(263169));
-   		System.out.println(sqrt(76123));
+	    // // Tests some of the operations
+	    // System.out.println(plus(-2,-3));   // 2 + 3
+	    // System.out.println(minus(-7,-2));  // 7 - 2
+   		// System.out.println(minus(2,7));  // 2 - 7
+ 		// System.out.println(times(3,-4));  // 3 * 4 3+3+3+3
+   		// System.out.println(plus(2,times(4,2)));  // 2 + 4 * 2 
+   		// System.out.println(pow(-5,3));      // 5^3
+   		// System.out.println(pow(-3,5));      // 3^5
+   		// System.out.println(div(12,-3));   // 12 / 3    
+   		System.out.println(div(-2,2));    // 5 / 5  
+   		// System.out.println(div(4,-2));   // 25 / 7
+   		// System.out.println(mod(3,2));   // 25 % 7
+   		// System.out.println(mod(120,6));  // 120 % 6    
+   		// System.out.println(sqrt(36));
+		// System.out.println(sqrt(263169));
+   		// System.out.println(sqrt(76123));
 	}  
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		// Adding one * x2
+		int answer = x1;
+		int count = x2;
+		for (int i = 0; i < Math.abs(count); i++) {
+			if (x2 < 0){
+				answer--;
+			} else {
+				answer++;
+			}
+			
+		}
+		return answer;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		//checking if minus
+		int answer = x1;
+		int count = x2;
+		for (int i = 0; i < Math.abs(count); i++) {
+			if (x2 < 0){
+				answer++;
+			} else {
+				answer--;
+			}	
+		}
+		return answer;
 	}
 
-	// Returns x1 * x2
-	public static int times(int x1, int x2) {
+	// Returns x1 * x2 -2 5 -2+-2+-2+-2+-2
+	public static int times(int x1, int x2){
 		// Replace the following statement with your code
-		return 0;
+		if (x1 == 0 || x2 == 0) {
+			return 0;
+		}
+		if (x1 < 0 && x2 < 0){
+			x1 = Math.abs(x1);
+			x2 = Math.abs(x2);
+		}
+		int answer = x1;
+		int count = x2;
+		if (count < 0 && answer >= 0){
+			answer = x2;
+			count = x1;
+			x1 = x2;
+		}
+		for (int i = 0; i < minus(count, 1); i++) {
+			answer = plus(answer, x1);
+		}
+		return answer;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		if (n == 0){
+			return 1;
+		}
+		if (Math.abs(mod(n, 2)) == 0){
+			x = Math.abs(x);
+		}
+		int answer = x;
+		for (int i = 0; i < n - 1; i++) {
+			answer = times(answer, x);
+		}
+		return answer;
 	}
 
-	// Returns the integer part of x1 / x2 
+	// Returns the integer part of x1 / x2 -2 2
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if (x1 == 0){
+			return 0;
+		}
+		boolean negative = false;
+		if (x1 < 0 || x2 < 0){
+			if (x1 < 0 && x2 < 0){
+				negative = false;
+			} else {
+				negative = true;
+			}
+		x1 = Math.abs(x1);
+		x2 = Math.abs(x2);
+		}
+		int answer = x2;
+		for (int i = 1; i < Math.abs(plus(x1 , 1)); i++) {
+			if (times(x2, i) == x1){
+				if (negative){
+					return times(-1, i);
+				}
+				return i;
+			}
+			if (times(x2, i) > x1){
+				if (negative){
+					return minus(times(-1, i), 1);
+				}
+				return minus(i, 1);
+			}
+		}
+		return answer;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		// Replace the following statement with your code 6%4
+		int answer = x1;
+		while (answer >= x2){
+			answer = minus(answer, x2);
+		}
+		return answer;
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		// Replace the following statement with your code
+		if (x == 1){
+			return 1;
+		}
+		for (int i = 0; i < x; i++){
+			int check = times(i, i);
+			if (check == x){
+				return i;
+			}
+			if (check > x){
+				return minus(i, 1);
+			}
+		}
 		return 0;
 	}	  	  
 }
