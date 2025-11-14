@@ -6,7 +6,7 @@
 public class Algebra {
 	public static void main(String args[]) {
 	    // Tests some of the operations
-	    System.out.println(plus(2,3));   // 2 + 3
+	    System.out.println(plus(-2,-3));   // 2 + 3
 	    System.out.println(minus(7,2));  // 7 - 2
    		System.out.println(minus(2,7));  // 2 - 7
  		System.out.println(times(3,4));  // 3 * 4 3+3+3+3
@@ -28,7 +28,7 @@ public class Algebra {
 		// Adding one * x2
 		int answer = x1;
 		int count = x2;
-		for (int i = 0; i < count; i++) {
+		for (int i = 0; i < Math.abs(count); i++) {
 			if (x2 < 0){
 				answer--;
 			} else {
@@ -44,7 +44,7 @@ public class Algebra {
 		//checking if minus
 		int answer = x1;
 		int count = x2;
-		for (int i = 0; i < count; i++) {
+		for (int i = 0; i < Math.abs(count); i++) {
 			if (x2 < 0){
 				answer++;
 			} else {
@@ -57,10 +57,13 @@ public class Algebra {
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		int answer = x1;
-		for (int i = 0; i < x2 - 1; i++) {
+		// Replace the following statement with your code 
+		int answer = Math.abs(x1);
+		for (int i = 0; i < Math.abs(minus(x2, 1)); i++) {
 			answer = plus(answer, x1);
+		}
+		if ((x1 < 0 || x2 <0) && !(x1 < 0 && x2 <0)){
+			return -answer;
 		}
 		return answer;
 	}
@@ -80,7 +83,7 @@ public class Algebra {
 	// Returns the integer part of x1 / x2
 	public static int div(int x1, int x2) {
 		int answer = x2;
-		for (int i = 1; i < x1 + 1; i++) {
+		for (int i = 1; i < Math.abs(plus(x1 , 1)); i++) {
 			if (times(x2, i) == x1){
 				return i;
 			}
