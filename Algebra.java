@@ -55,7 +55,7 @@ public class Algebra {
 		return answer;
 	}
 
-	// Returns x1 * x2 3+3+3+3
+	// Returns x1 * x2
 	public static int times(int x1, int x2) {
 		// Replace the following statement with your code
 		int answer = x1;
@@ -65,7 +65,7 @@ public class Algebra {
 		return answer;
 	}
 
-	// Returns x^n (for n >= 0) 5 * 5 * 5
+	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		int answer = x;
 		if (n == 0){
@@ -77,7 +77,7 @@ public class Algebra {
 		return answer;
 	}
 
-	// Returns the integer part of x1 / x2 5/2 2*? = 4 
+	// Returns the integer part of x1 / x2
 	public static int div(int x1, int x2) {
 		int answer = x2;
 		for (int i = 1; i < x1 + 1; i++) {
